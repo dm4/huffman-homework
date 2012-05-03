@@ -34,7 +34,7 @@ Improvement
 
 在 [Memory Efficient and High-Speed Search Huffman Coding][1] 裡，有個 Super-Table 的 data structure ，在我的實作是直接在 LUT 裡的，這點也是我覺得 paper 裡很奇怪的一點，為什麼不能把需要的資料直接寫在 LUT 裡，而需要去另外查表？
 
-另外 paper 用了一個 sparse 的 symbol table ，在我的實作裡，用 std::vector 使用了一個 condense symbol table ，在 LUT 裡則是存了指向此 symbol table element 的 pointer 。
+另外 paper 用了一個 sparse 的 symbol table ，在我的實作裡，用 std::vector 使用了一個 condense symbol table ，在 LUT 裡則是存了 symbol table element 的 index 。
 
 照理來說要做壓縮，應該是要壓成 0101... 的 bit stream ，不過因為作業的 sample input (compressed.txt) 是將 bit stream 存成 character ，因為在我的實作裡也是把 codeword 及 symbol 都存成 character 的型式。
 
