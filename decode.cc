@@ -120,7 +120,6 @@ int main(int argc, const char *argv[]) {
             LUT.push_back(ptr);
             buildLUT[nowBuildLUT] = LUT.size() - 1;
             previousBuildLUT = nowBuildLUT;
-//             printf("buildLUT[%d] = %lu\t", nowBuildLUT, LUT.size() - 1);
 
             // set link
             if (height >= 8) {
@@ -129,9 +128,7 @@ int main(int argc, const char *argv[]) {
                 int index = bin2dec(height - 8, height - 4, p->codeword);
                 previous->isSymbol[index] = false;
                 previous->next[index] = LUT.size() - 1;
-//                 printf("previousLUT %d", previousLUT);
             }
-//             printf("\n");
         }
 
         // set lookup entries
