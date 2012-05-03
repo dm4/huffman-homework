@@ -17,7 +17,7 @@ typedef struct symbol {
 } Symbol;
 
 typedef struct lookup {
-    Symbol  *s[16];
+    int     s[16];
     bool    isSymbol[16];
     int     nextLUT[16];
     bool    isSet[16];
@@ -144,7 +144,7 @@ int main(int argc, const char *argv[]) {
         int base = calcBase(height, p->codeword);
         for (int j = 0; j < subNum; j++) {
             LUT[LUT.size() - 1]->isSymbol[base + j] = true;
-            LUT[LUT.size() - 1]->s[base + j] = p;
+            LUT[LUT.size() - 1]->s[base + j] = i;
             LUT[LUT.size() - 1]->isSet[base + j] = true;
         }
     }
@@ -157,7 +157,7 @@ int main(int argc, const char *argv[]) {
                 Lookup *ptr = LUT[i];
                 if (ptr->isSet[j]) {
                     if (ptr->isSymbol[j]) {
-                        printf("[%2d] %s %s\n", j, ptr->s[j]->symbol, ptr->s[j]->codeword);
+                        printf("[%2d] %s %s\n", j, symbols[ptr->s[j]]->symbol, symbols[ptr->s[j]]->codeword);
                     }
                     else {
                         printf("[%2d] LUT[%d]\n", j, ptr->nextLUT[j]);
@@ -210,7 +210,7 @@ int main(int argc, const char *argv[]) {
         printf("Bufffer %s\n", buf);
         Lookup *table = LUT[nowLUT];
         if (table->isSymbol[index]) {
-            Symbol *s = table->s[index];
+            Symbol *s = symbols[table->s[index]];
             printf("Symbol  %s\n", s->symbol);
             fprintf(fout, "%s\n", s->symbol);
             int shift = s->cl - nowCL;
