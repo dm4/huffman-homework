@@ -17,10 +17,8 @@ typedef struct symbol {
 } Symbol;
 
 typedef struct lookup {
-    int     s[16];
+    int     next[16];
     bool    isSymbol[16];
-    int     nextLUT[16];
-    bool    isSet[16];
 } Lookup;
 
 vector<Symbol *> symbols;
@@ -129,9 +127,8 @@ int main(int argc, const char *argv[]) {
                 int previousLUT = buildLUT[bin2dec(0, height - 8, p->codeword)];
                 Lookup *previous = LUT[previousLUT];
                 int index = bin2dec(height - 8, height - 4, p->codeword);
-                previous->isSet[index] = true;
                 previous->isSymbol[index] = false;
-                previous->nextLUT[index] = LUT.size() - 1;
+                previous->next[index] = LUT.size() - 1;
 //                 printf("previousLUT %d", previousLUT);
             }
 //             printf("\n");
@@ -144,8 +141,7 @@ int main(int argc, const char *argv[]) {
         int base = calcBase(height, p->codeword);
         for (int j = 0; j < subNum; j++) {
             LUT[LUT.size() - 1]->isSymbol[base + j] = true;
-            LUT[LUT.size() - 1]->s[base + j] = i;
-            LUT[LUT.size() - 1]->isSet[base + j] = true;
+            LUT[LUT.size() - 1]->next[base + j] = i;
         }
     }
 
@@ -155,13 +151,11 @@ int main(int argc, const char *argv[]) {
             printf("LUT[%d]\n", i);
             for (int j = 0; j < 16; j++) {
                 Lookup *ptr = LUT[i];
-                if (ptr->isSet[j]) {
-                    if (ptr->isSymbol[j]) {
-                        printf("[%2d] %s %s\n", j, symbols[ptr->s[j]]->symbol, symbols[ptr->s[j]]->codeword);
-                    }
-                    else {
-                        printf("[%2d] LUT[%d]\n", j, ptr->nextLUT[j]);
-                    }
+                if (ptr->isSymbol[j]) {
+                    printf("[%2d] %s %s\n", j, symbols[ptr->next[j]]->symbol, symbols[ptr->next[j]]->codeword);
+                }
+                else {
+                    printf("[%2d] LUT[%d]\n", j, ptr->next[j]);
                 }
             }
         }
@@ -210,7 +204,7 @@ int main(int argc, const char *argv[]) {
         printf("Bufffer %s\n", buf);
         Lookup *table = LUT[nowLUT];
         if (table->isSymbol[index]) {
-            Symbol *s = symbols[table->s[index]];
+            Symbol *s = symbols[table->next[index]];
             printf("Symbol  %s\n", s->symbol);
             fprintf(fout, "%s\n", s->symbol);
             int shift = s->cl - nowCL;
@@ -221,8 +215,8 @@ int main(int argc, const char *argv[]) {
             nowLUT = 0;
         }
         else {
-            printf("Jump to LUT[%d]\n", table->nextLUT[index]);
-            nowLUT = table->nextLUT[index];
+            printf("Jump to LUT[%d]\n", table->next[index]);
+            nowLUT = table->next[index];
             nowCL += 4;
             for (int i = 0; i < 4; i++) {
                 buf[i] = 0;
