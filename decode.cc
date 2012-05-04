@@ -102,8 +102,8 @@ int main(int argc, const char *argv[]) {
     printf("Sort by codewords\n");
     sort(symbols.begin(), symbols.end(), cmpSymbol);
 
-    // LUT and ST
-    printf("Construct LUT & ST\n");
+    // LUT
+    printf("Construct LUT\n");
     map<int, int> buildLUT;
     int height = 0;
     int previousBuildLUT = -1;
