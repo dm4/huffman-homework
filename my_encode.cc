@@ -21,8 +21,6 @@ typedef struct cLRecordEntry {
 } CLRecordEntry;
 
 typedef struct symbol {
-//     char symbol[MAX_SYMBOL_LENGTH + 1];
-//     char codeword[MAX_CODEWORD_LENGTH + 1];
     unsigned int codeword;
     char cl;
     char symbol;
