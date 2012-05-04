@@ -156,7 +156,7 @@ int main(int argc, const char *argv[]) {
         symbolCount.pop_back();
         symbolCount.push_back(newS);
         sort(symbolCount.begin(), symbolCount.end(), sortByCountDescending);
-        CLRecordEntry *entry = (CLRecordEntry *)malloc(sizeof(CLRecordEntry *));
+        CLRecordEntry *entry = (CLRecordEntry *)malloc(sizeof(CLRecordEntry));
         entry->s1 = s1->symbol;
         entry->s2 = s2->symbol;
         entry->cl = 0;
