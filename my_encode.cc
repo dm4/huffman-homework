@@ -189,7 +189,7 @@ int main(int argc, const char *argv[]) {
     }
 
     // read from start of input file
-    fseeko(fp, 0, SEEK_SET);
+    fseek(fp, 0, SEEK_SET);
     unsigned int buf = 0;
     int bufLen = 0;
     while(!feof(fp)) {
