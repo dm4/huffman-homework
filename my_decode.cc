@@ -39,7 +39,7 @@ int main(int argc, const char *argv[]) {
 
     // Read input
     printf("Open input file: %s\n", argv[1]);
-    FILE *fp = fopen(argv[1], "r");
+    FILE *fp = fopen(argv[1], "rb");
     if (fp == NULL) {
         fprintf(stderr, "Invalid file: %s\n", argv[1]);
         exit(1);
@@ -124,7 +124,7 @@ int main(int argc, const char *argv[]) {
 
     // open output file
     printf("Open output file: %s\n", argv[2]);
-    FILE *fout = fopen(argv[2], "w");
+    FILE *fout = fopen(argv[2], "wb");
     if (fout == NULL) {
         fprintf(stderr, "Couldn't open file: %s\n", argv[2]);
         exit(1);

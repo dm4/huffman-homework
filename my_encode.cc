@@ -111,7 +111,7 @@ int main(int argc, const char *argv[]) {
     // Read input
     printf("Read input file: %s\n", argv[1]);
     map<char, int> count;
-    FILE *fp = fopen(argv[1], "r");
+    FILE *fp = fopen(argv[1], "rb");
     if (fp == NULL) {
         fprintf(stderr, "Invalid file: %s\n", argv[1]);
         exit(1);
