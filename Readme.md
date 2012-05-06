@@ -31,6 +31,27 @@ File Format
 
     一個 symbol 一行，以 character 型式儲存於 file 中，如同助教給的 `decoded_symbol.txt` 。
 
+Submit Files
+------------
+
+    ITCT_VLC_R00922006
+    ├── K3                    // K3 huffman table
+    ├── K4                    // K4 huffman table
+    ├── K5                    // K5 huffman table
+    ├── K6                    // K6 huffman table
+    ├── K7                    // The huffman table in the paper
+    ├── Makefile
+    ├── Readme.html           // This Document
+    ├── compressed.txt        // compressed.txt from TA
+    ├── compressed_K7.txt     // compressed text for K7
+    ├── decode.cc             // homework requirement source code
+    ├── my_decode.cc          // bonus decode source code
+    ├── my_encode.cc          // bonus encode source code
+    ├── r00922006_vlc_dec.exe // homework requirement windows executable
+    ├── encoder.exe           // bonus encode windows executable
+    ├── decoder.exe           // bonus decode windows executable
+    └── world95.txt           // text file from TA
+
 Modification
 ------------
 
